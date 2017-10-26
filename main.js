@@ -39,7 +39,6 @@ if (Meteor.isServer && Meteor.isDevelopment) {
 
 			console.log("Today is " + date);
 			console.log("Day offset = " + weekday);
-			console.log("Today is " + date);
 			console.log("This week's range is " + mon.calendar() + " to " + sun.calendar());
 
 			let total = 0;
