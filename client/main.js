@@ -1,4 +1,6 @@
 import { Template } from 'meteor/templating';
+import { ReactiveDict } from 'meteor/reactive-dict';
+
 import { Expenses } from '../imports/expenses.js';
 import { Jobs } from '../imports/jobs.js';
 
@@ -10,6 +12,8 @@ import './main.html';
 Template.body.onCreated( function bodyOnCreated() {
 	Meteor.subscribe('expenses');
 	Meteor.subscribe('jobs');
+
+	this.stats = new ReactiveDict("stats");
 });
 
 Template.body.helpers({
@@ -17,12 +21,40 @@ Template.body.helpers({
 		return Jobs.find({});
 	},
 	jobs_total() {
-		return (10+20+20+23+45+10);
+		let template = Template.instance();
+		let total = template.stats.get('jobsTotal');
+		if ( total === undefined ) {
+			Meteor.call('jobs.total', {}, (err, res) => {
+				if (err) {
+					console.log("Error retrieving wages. " + err);
+				} else {
+					template.stats.set('jobsTotal', res);
+					return res;
+				}
+
+			});
+		} else {
+			return total;
+		}
 	},
 	expenses() {
 		return Expenses.find({});
 	},
 	expenses_total() {
-		return (20+10+20+20+23+45+10);
+		let template = Template.instance();
+		let total = template.stats.get('expensesTotal');
+		if ( total === undefined ) {
+			Meteor.call('expenses.total', {}, (err, res) => {
+				if (err) {
+					console.log("Error retrieving wages. " + err);
+				} else {
+					template.stats.set('expensesTotal', res);
+					return res;
+				}
+
+			});
+		} else {
+			return total;
+		}
 	},
 });

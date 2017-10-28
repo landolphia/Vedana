@@ -19,3 +19,4 @@ blaze-html-templates
 accounts-ui
 accounts-password
 check
+reactive-dict
