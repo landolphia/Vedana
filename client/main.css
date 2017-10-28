@@ -2,17 +2,18 @@
 	 background-color: #FFFFD8;
  }
 
- div.week {
+ div.jobs {
+	 border: 2px solid #C0C000;
 	 background-color: #EEEEC6;
  }
 
- div.day {
+ div.job {
 	 background-color: #DDFFD8;
  }
 
  div.expenses {
-	 border: 2px solid black;
-	 background-color: #C0C0D0;
+	 border: 2px solid #0000C0;
+	 background-color: #D8D8FF;
  }
 
  div.expense {

@@ -6,15 +6,18 @@
 	{{> loginButtons}}
 
 	{{#if currentUser}}
-	<div class="week">
-		<span class="day"> $ 14 :) </span>
-		<span class="day"> $ 34 :/ </span>
-		<span class="day"> $ 10 :/ </span>
-		<span class="day"> $ 5 :/ </span>
-		<span class="day"> OFF! :) </span>
-		<span class="day"> $ 14 :) </span>
-		<span class="day"> $ 14 :) </span>
-		<span class="day"> $ 14 :) </span>
+	<div class="jobs">
+		{{#each jobs}}
+			{{> job}}
+		{{/each}}
+		<span>Total: {{jobs_total}}</span>
+	</div>
+	<div class="addJob">
+		<form  class="newJob">
+			<input type="text" name="jobAmount" placeholder="Wage">
+			<button> :) </button>
+			<button> :( </button>
+		</form>
 	</div>
 
 	<div class="expenses">
@@ -36,6 +39,9 @@
 		<h4> Roadmap </h4>
 		<ul>
 			<li>
+				<h5> Jobs </h5>
+				<span>
+				</span>
 				<h5> Expenses </h5>
 				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
 					There are two types of expenses, past and future (wants, gifts, rewards for self).
@@ -67,5 +73,13 @@
 <template name="expense">
 	<span  class="expense"> ${{amount}}
 		<button class="deleteExpense"> - </button>
+	</span>
+</template>
+
+<template name="job">
+	<span  class="job"> ${{amount}}
+		{{#if mood}}:){{/if}}
+		{{#unless mood}}:({{/unless}}
+		<button class="deleteJob"> - </button>
 	</span>
 </template>
