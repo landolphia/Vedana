@@ -1,0 +1,71 @@
+<head>
+	<title> Vedana </title>
+</head>
+
+<body>
+	{{> loginButtons}}
+
+	{{#if currentUser}}
+	<div class="week">
+		<span class="day"> $ 14 :) </span>
+		<span class="day"> $ 34 :/ </span>
+		<span class="day"> $ 10 :/ </span>
+		<span class="day"> $ 5 :/ </span>
+		<span class="day"> OFF! :) </span>
+		<span class="day"> $ 14 :) </span>
+		<span class="day"> $ 14 :) </span>
+		<span class="day"> $ 14 :) </span>
+	</div>
+
+	<div class="expenses">
+		{{#each expenses}}
+			{{> expense}}
+		{{/each}}
+		<span>Total: {{expenses_total}}</span>
+	</div>
+	<div class="addExpense">
+		<form  class="newExpense">
+			<input type="text" name="expenseAmount" placeholder="Add expense">
+			<button> add </button>
+		</form>
+	</div>
+	{{/if}}
+
+	{{#unless currentUser.username}}
+	<div id="roadmap">
+		<h4> Roadmap </h4>
+		<ul>
+			<li>
+				<h5> Expenses </h5>
+				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
+					There are two types of expenses, past and future (wants, gifts, rewards for self).
+				</span>
+				<span> Note: write a helper to get the total expenses. It should check if it's already been computed, if not do it and store it in a session variable.
+				</span>
+			</li>
+			<li>
+				<h5> Day </h5>
+				<ul>
+					<li> Name of day </li>
+					<li> Formatted date </li>
+					<li> Remainder for the day OR Bonus for the day </li>
+					<li> Current day's wages </li>
+					<li> List of jobs done </li>
+					<li> Lock button, becomes unavailable as soon as and job's been entered for the day </li>
+					<li> Add job input with pay and binary mood evaluation </li>
+				</ul>
+			</li>
+			<li> <h5> Blog </h5>
+				<span> The blog has got to be updated, and especially taken out of the main html file. (collapsible at very least)
+				</span>
+			</li>
+		</ul>
+	</div>
+	{{/unless}}
+</body>
+
+<template name="expense">
+	<span  class="expense"> ${{amount}}
+		<button class="deleteExpense"> - </button>
+	</span>
+</template>
