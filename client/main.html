@@ -12,8 +12,8 @@
 		{{/each}}
 		<span>Total: {{jobs_total}}</span>
 	</div>
-	<div class="addJob">
-		<form  class="newJob">
+	<div> 
+		<form>
 			<input type="text" name="jobAmount" placeholder="Wage">
 			<button> :) </button>
 			<button> :( </button>
@@ -26,15 +26,15 @@
 		{{/each}}
 		<span>Total: {{expenses_total}}</span>
 	</div>
-	<div class="addExpense">
-		<form  class="newExpense">
+	<div>
+		<form>
 			<input type="text" name="expenseAmount" placeholder="Add expense">
 			<button> add </button>
 		</form>
 	</div>
 	{{/if}}
 
-	{{#unless currentUser.username}}
+	{{#unless currentUser}}
 	<div id="roadmap">
 		<h4> Roadmap </h4>
 		<ul>
@@ -75,7 +75,7 @@
 
 <template name="expense">
 	<span  class="expense"> ${{amount}}
-		<button class="deleteExpense"> - </button>
+		<button class="delete"> - </button>
 	</span>
 </template>
 
@@ -83,6 +83,6 @@
 	<span  class="job"> ${{amount}}
 		{{#if mood}}:){{/if}}
 		{{#unless mood}}:({{/unless}}
-		<button class="deleteJob"> - </button>
+		<button class="delete"> - </button>
 	</span>
 </template>
