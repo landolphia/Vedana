@@ -8,29 +8,35 @@
 	{{#if currentUser}}
 	<div class="jobs">
 		{{#each jobs}}
-			{{> job}}
+		{{> job}}
 		{{/each}}
 		<span>Total: {{jobs_total}}</span>
-	</div>
-	<div> 
-		<form>
-			<input type="text" name="jobAmount" placeholder="Wage">
-			<button> :) </button>
-			<button> :( </button>
-		</form>
+		<div> 
+			<form>
+				<input type="text" name="jobAmount" placeholder="Wage">
+				<button> :) </button>
+				<button> :( </button>
+			</form>
+		</div>
 	</div>
 
 	<div class="expenses">
 		{{#each expenses}}
-			{{> expense}}
+		{{> expense}}
 		{{/each}}
 		<span>Total: {{expenses_total}}</span>
+		<div>
+			<form>
+				<input type="text" name="expenseAmount" placeholder="Add expense">
+				<button> add </button>
+			</form>
+		</div>
 	</div>
-	<div>
-		<form>
-			<input type="text" name="expenseAmount" placeholder="Add expense">
-			<button> add </button>
-		</form>
+
+	<div class="stats">
+		{{#each stats}}
+		{{> stat}}
+		{{/each}}
 	</div>
 	{{/if}}
 
@@ -84,16 +90,21 @@
 	{{/unless}}
 </body>
 
-<template name="expense">
-	<span  class="expense"> ${{amount}}
-		<button class="delete"> - </button>
-	</span>
-</template>
-
 <template name="job">
 	<span  class="job"> ${{amount}}
 		{{#if mood}}:){{/if}}
 		{{#unless mood}}:({{/unless}}
 		<button class="delete"> - </button>
 	</span>
+</template>
+
+<template name="expense">
+	<span  class="expense"> ${{amount}}
+		<button class="delete"> - </button>
+	</span>
+</template>
+
+<template name="stat">
+	<span  class="stat"> {{label}} : {{amount}}
+	</span><br/>
 </template>
