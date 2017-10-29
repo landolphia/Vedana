@@ -39,17 +39,28 @@
 		<h4> Roadmap </h4>
 		<ul>
 			<li>
-				<h5> Other </h5>
-				<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
-				</span>
-			</li>
-			<li>
 				<h5> Jobs </h5>
 				<span> Need to write inserts, and then limit the jobs gathered to the current week.
 				</span>
 				<h5> Expenses </h5>
 				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
 					There are two types of expenses, past and future (wants, gifts, rewards for self).
+				</span>
+			</li>
+			<li>
+				<h5> Dates </h5>
+				<span> Should includes utils to create ranges for DB queries, to get the day's name from the date.
+				</span>
+			</li>
+			<li>
+				<h5> Other </h5>
+				<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
+					I also need to secure the DB and only retrieve the current's user's data.
+				</span>
+			</li>
+			<li>
+				<h5> Stats </h5>
+				<span> All the stats should be refreshed whenever a job/expense is added/removed/updated.
 				</span>
 			</li>
 			<li>
