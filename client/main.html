@@ -1,0 +1,88 @@
+<head>
+	<title> Vedana </title>
+</head>
+
+<body>
+	{{> loginButtons}}
+
+	{{#if currentUser}}
+	<div class="jobs">
+		{{#each jobs}}
+			{{> job}}
+		{{/each}}
+		<span>Total: {{jobs_total}}</span>
+	</div>
+	<div class="addJob">
+		<form  class="newJob">
+			<input type="text" name="jobAmount" placeholder="Wage">
+			<button> :) </button>
+			<button> :( </button>
+		</form>
+	</div>
+
+	<div class="expenses">
+		{{#each expenses}}
+			{{> expense}}
+		{{/each}}
+		<span>Total: {{expenses_total}}</span>
+	</div>
+	<div class="addExpense">
+		<form  class="newExpense">
+			<input type="text" name="expenseAmount" placeholder="Add expense">
+			<button> add </button>
+		</form>
+	</div>
+	{{/if}}
+
+	{{#unless currentUser.username}}
+	<div id="roadmap">
+		<h4> Roadmap </h4>
+		<ul>
+			<li>
+				<h5> Other </h5>
+				<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
+				</span>
+			</li>
+			<li>
+				<h5> Jobs </h5>
+				<span> Need to write inserts, and then limit the jobs gathered to the current week.
+				</span>
+				<h5> Expenses </h5>
+				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
+					There are two types of expenses, past and future (wants, gifts, rewards for self).
+				</span>
+			</li>
+			<li>
+				<h5> Day </h5>
+				<ul>
+					<li> Name of day </li>
+					<li> Formatted date </li>
+					<li> Remainder for the day OR Bonus for the day </li>
+					<li> Current day's wages </li>
+					<li> List of jobs done </li>
+					<li> Lock button, becomes unavailable as soon as and job's been entered for the day </li>
+					<li> Add job input with pay and binary mood evaluation </li>
+				</ul>
+			</li>
+			<li> <h5> Blog </h5>
+				<span> The blog has got to be updated, and especially taken out of the main html file. (collapsible at very least)
+				</span>
+			</li>
+		</ul>
+	</div>
+	{{/unless}}
+</body>
+
+<template name="expense">
+	<span  class="expense"> ${{amount}}
+		<button class="deleteExpense"> - </button>
+	</span>
+</template>
+
+<template name="job">
+	<span  class="job"> ${{amount}}
+		{{#if mood}}:){{/if}}
+		{{#unless mood}}:({{/unless}}
+		<button class="deleteJob"> - </button>
+	</span>
+</template>

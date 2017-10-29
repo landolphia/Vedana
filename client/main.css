@@ -1,0 +1,26 @@
+ body {
+	 background-color: #FFFFD8;
+ }
+
+ div.jobs {
+	 border: 2px solid #C0C000;
+	 background-color: #EEEEC6;
+ }
+
+ div.job {
+	 background-color: #DDFFD8;
+ }
+
+ div.expenses {
+	 border: 2px solid #0000C0;
+	 background-color: #D8D8FF;
+ }
+
+ div.expense {
+	 background-color: #CCBBAA;
+ }
+
+ button.deleteExpense {
+	 margin: 0 0 0 0;
+	 padding: 0 0 0 0;
+ }
