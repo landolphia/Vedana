@@ -33,7 +33,6 @@ Meteor.methods({
 		expenses.forEach((expense) => {
 			total += expense.amount;
 		});
-		console.log("Total = " + total);
 		return total.toFixed(2);
 	},
 	'expenses.insert'(amount, label) {
