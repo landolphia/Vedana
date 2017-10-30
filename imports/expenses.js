@@ -9,7 +9,7 @@ if (Meteor.isServer) {
 		Expenses.remove({});
 		if (Expenses.find().count() === 0) {
 			console.log("Populating DB with expenses.");
-			Expenses.insert({ amount: 20, label: "chocolates"});
+			Expenses.insert({ amount: 30, label: "chocolates"});
 			Expenses.insert({ amount: 10, label: "the last of us"});
 			Expenses.insert({ amount: 20, label: "mass effect"});
 			Expenses.insert({ amount: 20, label: "mba charger"});
@@ -17,6 +17,7 @@ if (Meteor.isServer) {
 			Expenses.insert({ amount: 45, label: "capris and coffee"});
 			Expenses.insert({ amount: 10, label: "intermediary groceries"});
 			Expenses.insert({ amount: 10, label: "pizza hut"});
+			Expenses.insert({ amount: 90, label: "jacket"});
 		}
 	});
 
