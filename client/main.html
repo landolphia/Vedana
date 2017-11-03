@@ -8,7 +8,7 @@
 	{{#if currentUser}}
 	<div class="jobs">
 		{{#each jobs}}
-		{{> job}}
+			{{> job}}
 		{{/each}}
 		<span>Total: {{jobs_total}}</span>
 		<div> 
@@ -22,7 +22,7 @@
 
 	<div class="expenses">
 		{{#each expenses}}
-		{{> expense}}
+			{{> expense}}
 		{{/each}}
 		<span>Total: {{expenses_total}}</span>
 		<div>
@@ -35,19 +35,31 @@
 
 	<div class="stats">
 		{{#each stats}}
-		{{> stat}}
+			{{> stat}}
 		{{/each}}
 	</div>
 	{{/if}}
 
 	{{#unless currentUser}}
 	<div id="roadmap">
-		<h4> Roadmap </h4>
+		<h5> Roadmap </h5>
 		<ul>
+			<li>
+				<h4> Todo </h4>
+				<span> Take care of dates soon, figure out how to split jobs, think about adding time spent, starting a job, pausing it, closing it.
+				</span>
+			</li>
+			<li>
+				<h5> Rev parsing </h5>
+				<span> Explicit
+				</span>
+			</li>
 			<li>
 				<h5> Jobs </h5>
 				<span> Need to write inserts, and then limit the jobs gathered to the current week.
 				</span>
+			</li>
+			<li>
 				<h5> Expenses </h5>
 				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
 					There are two types of expenses, past and future (wants, gifts, rewards for self).
