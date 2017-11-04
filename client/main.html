@@ -42,16 +42,17 @@
 
 	{{#unless currentUser}}
 	<div id="roadmap">
+		<h5> Todo </h5>
+		<span> Take care of dates, starting with converting the string dates from json files. Figure out how to split jobs, think about adding time spent, starting a job, pausing it, closing it.
+		</span>
+		<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
+			I also need to secure the DB and only retrieve the current's user's data.
+		</span>
 		<h5> Roadmap </h5>
 		<ul>
 			<li>
-				<h4> Todo </h4>
-				<span> Take care of dates soon, figure out how to split jobs, think about adding time spent, starting a job, pausing it, closing it.
-				</span>
-			</li>
-			<li>
 				<h5> Rev parsing </h5>
-				<span> Explicit
+				<span> Make it easy to copy and paste the earnings page to insert work history.
 				</span>
 			</li>
 			<li>
@@ -71,14 +72,8 @@
 				</span>
 			</li>
 			<li>
-				<h5> Other </h5>
-				<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
-					I also need to secure the DB and only retrieve the current's user's data.
-				</span>
-			</li>
-			<li>
 				<h5> Stats </h5>
-				<span> All the stats should be refreshed whenever a job/expense is added/removed/updated.
+				<span> All the stats should be refreshed whenever a job/expense is added/removed/updated. Should they be stored/cached?
 				</span>
 			</li>
 			<li>

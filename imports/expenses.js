@@ -8,30 +8,17 @@ if (Meteor.isServer) {
 	Meteor.startup(()=> {
 		Expenses.remove({});
 		if (Expenses.find().count() === 0) {
-			console.log("Populating DB with expenses.");
-
-			//Expenses.insert({ amount: 30, label: "chocolates"});
-			//Expenses.insert({ amount: 10, label: "the last of us"});
-			//Expenses.insert({ amount: 20, label: "mass effect"});
-			//Expenses.insert({ amount: 20, label: "mba charger"});
-			//Expenses.insert({ amount: 23, label: "fuddrucker's"});
-			//Expenses.insert({ amount: 45, label: "capris and coffee"});
-			//Expenses.insert({ amount: 10, label: "intermediary groceries"});
-			//Expenses.insert({ amount: 10, label: "pizza hut"});
-			//Expenses.insert({ amount: 90, label: "jacket"});
-
-
-			// 10/30
-			Expenses.insert({ amount: 173.12, label: "Market Basket"});
-			Expenses.insert({ amount: 9.98, label: "Stop and shop"});
-			// 11/2
-			Expenses.insert({ amount: 39.82, label: "Target"});
-			Expenses.insert({ amount: 9.68, label: "Market Basket"});
+			var expenses = [];
+			expenses = JSON.parse(Assets.getText("expenses.json"));
+			expenses.forEach( function (e) {
+				console.log(JSON.stringify(e));
+				Expenses.insert(e);
+			});
 		}
 	});
 
 	Meteor.publish('expenses', function expensesPublication() {
-		return Expenses.find();
+		return Expenses.find({}, { sort: { "date": 1}});
 	});
 }
 
