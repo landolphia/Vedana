@@ -8,10 +8,10 @@ if (Meteor.isServer) {
 	Meteor.startup(()=> {
 		Expenses.remove({});
 		if (Expenses.find().count() === 0) {
+			console.log("Inserting test expenses in DB.");
 			var expenses = [];
 			expenses = JSON.parse(Assets.getText("expenses.json"));
 			expenses.forEach( function (e) {
-				console.log(JSON.stringify(e));
 				Expenses.insert(e);
 			});
 		}
@@ -39,7 +39,7 @@ Meteor.methods({
 			throw new Meteor.Error('not-authorized');
 		}
 		Expenses.insert({
-			amount: amounttoFixed(2),
+			amount: amount.toFixed(2),
 			label: label,
 			createdAt: new Date(),
 			owner: Meteor.userId(),

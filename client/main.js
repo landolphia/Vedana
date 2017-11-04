@@ -63,3 +63,35 @@ Template.body.helpers({
 		}
 	},
 });
+
+Template.body.events({
+	'submit #newJob'(event) {
+		//FIXME this only prevents the first submit, weird
+		//this does not seem to affect the expenses
+		event.preventDefault();
+
+		const target = event.target;
+		const amount = target.amount.value;
+		target.amount.value = "";
+		const mood = (event.currentTarget.id="happy");
+		Meteor.call('jobs.insert', Number(amount), Boolean(mood));
+	},
+	'click .deleteJob'(event) {
+		event.preventDefault();
+		Meteor.call('jobs.remove', this._id);
+	},
+	'submit #newExpense'(event) {
+		event.preventDefault();
+
+		const target = event.target;
+		const amount = target.amount.value;
+		const label = target.label.value;
+		target.amount.value = "";
+		target.label.value = "";
+		Meteor.call('expenses.insert', Number(amount), String(label));
+	},
+	'click .deleteExpense'(event) {
+		event.preventDefault();
+		Meteor.call('expenses.remove', this._id);
+	},
+});

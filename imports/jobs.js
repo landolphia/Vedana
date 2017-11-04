@@ -8,10 +8,10 @@ if (Meteor.isServer) {
 	Meteor.startup(()=> {
 		Jobs.remove({});
 		if (Jobs.find().count() === 0) {
+			console.log("Inserting test jobs in DB.");
 			var jobs = [];
 			jobs = JSON.parse(Assets.getText("jobs.json"));
 			jobs.forEach( function (j) {
-				console.log(JSON.stringify(j));
 				Jobs.insert(j);
 			});
 		}

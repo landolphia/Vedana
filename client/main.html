@@ -6,16 +6,17 @@
 	{{> loginButtons}}
 
 	{{#if currentUser}}
+	
 	<div class="jobs">
 		{{#each jobs}}
 			{{> job}}
 		{{/each}}
 		<span>Total: {{jobs_total}}</span>
 		<div> 
-			<form>
-				<input type="text" name="jobAmount" placeholder="Wage">
-				<button> :) </button>
-				<button> :( </button>
+			<form id="newJob">
+				<input type="numeric" name="amount" placeholder="Wage">
+				<button id="happy"> :) </button>
+				<button id="unhappy"> :( </button>
 			</form>
 		</div>
 	</div>
@@ -26,8 +27,9 @@
 		{{/each}}
 		<span>Total: {{expenses_total}}</span>
 		<div>
-			<form>
-				<input type="text" name="expenseAmount" placeholder="Add expense">
+			<form id="newExpense">
+				<input type="numeric" name="amount" placeholder="Amount">
+				<input type="text" name="label" placeholder="Label">
 				<button> add </button>
 			</form>
 		</div>
@@ -43,10 +45,11 @@
 	{{#unless currentUser}}
 	<div id="roadmap">
 		<h5> Todo </h5>
+		<span> I also need to secure the DB and only retrieve the current's user's data, and only allow the user to insert/remove items.
+		</span>
 		<span> Take care of dates, starting with converting the string dates from json files. Figure out how to split jobs, think about adding time spent, starting a job, pausing it, closing it.
 		</span>
 		<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
-			I also need to secure the DB and only retrieve the current's user's data.
 		</span>
 		<h5> Roadmap </h5>
 		<ul>
@@ -57,7 +60,7 @@
 			</li>
 			<li>
 				<h5> Jobs </h5>
-				<span> Need to write inserts, and then limit the jobs gathered to the current week.
+				<span> Limit the jobs gathered to the current week.
 				</span>
 			</li>
 			<li>
@@ -101,13 +104,13 @@
 	<span  class="job"> ${{amount}}
 		{{#if mood}}:){{/if}}
 		{{#unless mood}}:({{/unless}}
-		<button class="delete"> - </button>
+		<button class="deleteJob"> - </button>
 	</span>
 </template>
 
 <template name="expense">
 	<span  class="expense"> ${{amount}}
-		<button class="delete"> - </button>
+		<button class="deleteExpense"> - </button>
 	</span>
 </template>
 
