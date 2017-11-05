@@ -49,38 +49,25 @@
 		</span>
 		<span> Take care of dates, starting with converting the string dates from json files. Figure out how to split jobs, think about adding time spent, starting a job, pausing it, closing it.
 		</span>
-		<span> I need to write a couple of date tools, such as getCurrentWeekRange. I need to write the day segmentation, put the stats in a ReactiveDict, and put reusable code in a utilities file in ./imports.
-		</span>
 		<h5> Roadmap </h5>
 		<ul>
 			<li>
-				<h5> Rev parsing </h5>
-				<span> Make it easy to copy and paste the earnings page to insert work history.
-				</span>
-			</li>
-			<li>
-				<h5> Jobs </h5>
+				<h5> Jobs (high priority)</h5>
 				<span> Limit the jobs gathered to the current week.
 				</span>
 			</li>
 			<li>
-				<h5> Expenses </h5>
-				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
-					There are two types of expenses, past and future (wants, gifts, rewards for self).
+				<h5> Dates (high priority)</h5>
+				<span> Weekrange, past day, future day, today, what else? I should fill the DB with data from Rev on publish, like I used to with IMAFRU.
 				</span>
 			</li>
 			<li>
-				<h5> Dates </h5>
-				<span> Should includes utils to create ranges for DB queries, to get the day's name from the date.
-				</span>
-			</li>
-			<li>
-				<h5> Stats </h5>
+				<h5> Stats (medium priority)</h5>
 				<span> All the stats should be refreshed whenever a job/expense is added/removed/updated. Should they be stored/cached?
 				</span>
 			</li>
 			<li>
-				<h5> Day </h5>
+				<h5> Day (medium priority)</h5>
 				<ul>
 					<li> Name of day </li>
 					<li> Formatted date </li>
@@ -91,7 +78,18 @@
 					<li> Add job input with pay and binary mood evaluation </li>
 				</ul>
 			</li>
-			<li> <h5> Blog </h5>
+			<li>
+				<h5> Rev parsing (low priority) </h5>
+				<span> Make it easy to copy and paste the earnings page to insert work history.
+				</span>
+			</li>
+			<li>
+				<h5> Expenses (low priority)</h5>
+				<span> Expenses can be carried over when a new week is created but don't have to. Expense bar shows current weekly wages vs current total expenses.
+					There are two types of expenses, past and future (wants, gifts, rewards for self).
+				</span>
+			</li>
+			<li> <h5> Blog (doesn't even register priority)</h5>
 				<span> The blog has got to be updated, and especially taken out of the main html file. (collapsible at very least)
 				</span>
 			</li>
