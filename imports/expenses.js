@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
+import { getWeekRange } from './dates.js';
+
 export const Expenses = new Mongo.Collection('expenses');
 
 if (Meteor.isServer) {
@@ -17,8 +19,11 @@ if (Meteor.isServer) {
 		}
 	});
 
-	Meteor.publish('expenses', function expensesPublication() {
-		return Expenses.find({}, { sort: { "date": 1}});
+	Meteor.publish('expenses', function expensesPublication(date) {
+		check(date, Date);
+		let range = Meteor.call('getWeekRange', date);
+		range.owner = this.userId;
+		return Expenses.find(range, { sort: { "date": 1}});
 	});
 }
 
@@ -31,9 +36,12 @@ Meteor.methods({
 		});
 		return total.toFixed(2);
 	},
-	'expenses.insert'(amount, label) {
+	'expenses.insert'(amount, label, date) {
+		console.log("Inserting : " + amount + " + " + label + " + " + date);
+		date = new Date(date);
 		check(amount, Number);
 		check(label, String);
+		check(date, Date);
 
 		if (! Meteor.userId()) {
 			throw new Meteor.Error('not-authorized');
@@ -41,7 +49,7 @@ Meteor.methods({
 		Expenses.insert({
 			amount: amount.toFixed(2),
 			label: label,
-			createdAt: new Date(),
+			date: date,
 			owner: Meteor.userId(),
 		});
 	},

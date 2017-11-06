@@ -11,7 +11,8 @@ import './main.html';
 
 
 Template.body.onCreated( function bodyOnCreated() {
-	Meteor.subscribe('expenses');
+	let now = new Date();
+	Meteor.subscribe('expenses', now);
 	Meteor.subscribe('jobs');
 	Meteor.subscribe('stats');
 
@@ -86,9 +87,10 @@ Template.body.events({
 		const target = event.target;
 		const amount = target.amount.value;
 		const label = target.label.value;
+		const now = new Date();
 		target.amount.value = "";
 		target.label.value = "";
-		Meteor.call('expenses.insert', Number(amount), String(label));
+		Meteor.call('expenses.insert', Number(amount), String(label), Date(now));
 	},
 	'click .deleteExpense'(event) {
 		event.preventDefault();
