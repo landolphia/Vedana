@@ -6,33 +6,43 @@ export const Jobs = new Mongo.Collection('jobs');
 
 if (Meteor.isServer) {
 	Meteor.startup(()=> {
-		Jobs.remove({});
-		if (Jobs.find().count() === 0) {
-			console.log("Inserting test jobs in DB.");
-			var jobs = [];
-			jobs = JSON.parse(Assets.getText("jobs.json"));
-			jobs.forEach( function (j) {
-				Jobs.insert(j);
-			});
-		}
+		//Jobs.remove({});
+		//if (Jobs.find().count() === 0) {
+		//	console.log("Inserting test jobs in DB.");
+		//	var jobs = [];
+		//	jobs = JSON.parse(Assets.getText("jobs.json"));
+		//	jobs.forEach( function (j) {
+		//		Jobs.insert(j);
+		//	});
+		//}
 
 	});
 
-	Meteor.publish('jobs', function jobsPublication() {
-		return Jobs.find({}, { sort: { "date": 1}});
+	Meteor.publish('jobs', function jobsPublication(date) {
+		check(date, Date);
+		let range = Meteor.call('getWeekRange', date);
+		range.owner = this.userId;
+		return Jobs.find(range, { sort: { "date": 1}});
 	});
 }
 
 Meteor.methods({
-	'jobs.total'(){
+	'jobs.total'(date) {
+		date = new Date(date);
+		check(date, Date);
+		let range = Meteor.call('getWeekRange', date);
+		range.owner = this.userId;
 		let total = 0;
-		let jobs = Jobs.find({});
+		let jobs = Jobs.find(range);
 		jobs.forEach((job) => {
-			total += job.amount;
+			total += Number(job.amount);
 		});
 		return total.toFixed(2);
 	},
-	'jobs.insert'(amount, mood) {
+	'jobs.insert'(amount, mood, date) {
+		console.log("Inserting : " + amount + " + " + mood + " + " + date);
+		date = new Date(date);
+		check(date, Date);
 		check(amount, Number);
 		check(mood, Boolean);
 
@@ -42,11 +52,14 @@ Meteor.methods({
 		Jobs.insert({
 			amount: amount.toFixed(2),
 			mood: mood,
-			createdAt: new Date(),
+			date: date,
 			owner: Meteor.userId(),
 		});
 	},
 	'jobs.remove'(id) {
+		if (! Meteor.userId()) {
+			throw new Meteor.Error('not-authorized');
+		}
 		check(id, String);
 		Jobs.remove(id);
 	},

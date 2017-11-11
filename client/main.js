@@ -13,15 +13,15 @@ import './main.html';
 Template.body.onCreated( function bodyOnCreated() {
 	let now = new Date();
 	Meteor.subscribe('expenses', now);
-	Meteor.subscribe('jobs');
-	Meteor.subscribe('stats');
+	Meteor.subscribe('jobs', now);
+	Meteor.subscribe('stats', now);
 
 	this.stats = new ReactiveDict("stats");
 });
 
 Template.body.helpers({
 	stats() {
-		return Stats.find({});
+		return Stats.find();
 	},
 	jobs() {
 		return Jobs.find({});
@@ -30,7 +30,8 @@ Template.body.helpers({
 		let template = Template.instance();
 		let total = template.stats.get('jobsTotal');
 		if ( total === undefined ) {
-			Meteor.call('jobs.total', {}, (err, res) => {
+			let now = new Date();
+			Meteor.call('jobs.total', now, (err, res) => {
 				if (err) {
 					console.log("Error retrieving wages. " + err);
 				} else {
@@ -50,9 +51,10 @@ Template.body.helpers({
 		let template = Template.instance();
 		let total = template.stats.get('expensesTotal');
 		if ( total === undefined ) {
-			Meteor.call('expenses.total', {}, (err, res) => {
+			let now = new Date();
+			Meteor.call('expenses.total', now, (err, res) => {
 				if (err) {
-					console.log("Error retrieving wages. " + err);
+					console.log("Error retrieving expenses. " + err);
 				} else {
 					template.stats.set('expensesTotal', res);
 					return res;
@@ -73,9 +75,10 @@ Template.body.events({
 
 		const target = event.target;
 		const amount = target.amount.value;
-		target.amount.value = "";
 		const mood = (event.currentTarget.id="happy");
-		Meteor.call('jobs.insert', Number(amount), Boolean(mood));
+		const now = new Date();
+		target.amount.value = "";
+		Meteor.call('jobs.insert', Number(amount), Boolean(mood), Date(now));
 	},
 	'click .deleteJob'(event) {
 		event.preventDefault();

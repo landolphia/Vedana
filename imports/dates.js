@@ -10,12 +10,13 @@ Meteor.methods({
 		let remoteDate = moment(date);
 		let remoteOffset = remoteDate.utcOffset();
 
-		let weekday = moment(today).isoWeekday() - 1;
+		let weekday = moment(today).isoWeekday();
 		let monday = moment(today).subtract(weekday, 'days').utcOffset(0);
 		let sunday = moment(monday).add(6, 'days').utcOffset(0);
 
 		let range = {"date" : {$gt : monday.toDate(), $lte : sunday.toDate()}};
 
+		console.log("This week for the client : " + JSON.stringify(range));
 		return range;
 	}
 });
