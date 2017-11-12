@@ -1,3 +1,3 @@
-import '../imports/expenses.js';
-import '../imports/jobs.js';
-import '../imports/stats.js';
+import '../imports/api/expenses.js';
+import '../imports/api/jobs.js';
+import '../imports/api/stats.js';

@@ -5,43 +5,6 @@
 <body>
 	{{> loginButtons}}
 
-	{{#if currentUser}}
-	
-	<div class="jobs">
-		{{#each jobs}}
-			{{> job}}
-		{{/each}}
-		<span>Total: {{jobs_total}}</span>
-		<div> 
-			<form id="newJob">
-				<input type="numeric" name="amount" placeholder="Wage">
-				<button id="happy"> :) </button>
-				<button id="unhappy"> :( </button>
-			</form>
-		</div>
-	</div>
-
-	<div class="expenses">
-		{{#each expenses}}
-			{{> expense}}
-		{{/each}}
-		<span>Total: {{expenses_total}}</span>
-		<div>
-			<form id="newExpense">
-				<input type="numeric" name="amount" placeholder="Amount">
-				<input type="text" name="label" placeholder="Label">
-				<button> add </button>
-			</form>
-		</div>
-	</div>
-
-	<div class="stats">
-		{{#each stats}}
-			{{> stat}}
-		{{/each}}
-	</div>
-	{{/if}}
-
 	{{#unless currentUser}}
 	<div id="roadmap">
 		<h5> Todo </h5>
@@ -97,22 +60,3 @@
 	</div>
 	{{/unless}}
 </body>
-
-<template name="job">
-	<span  class="job"> ${{amount}}
-		{{#if mood}}:){{/if}}
-		{{#unless mood}}:({{/unless}}
-		<button class="deleteJob"> - </button>
-	</span>
-</template>
-
-<template name="expense">
-	<span  class="expense"> ${{amount}} : {{label}}
-		<button class="deleteExpense"> - </button>
-	</span>
-</template>
-
-<template name="stat">
-	<span  class="stat"> {{label}} : {{amount}}
-	</span><br/>
-</template>

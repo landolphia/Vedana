@@ -1,0 +1,12 @@
+<body>
+	<div class="stats">
+		{{#each stats}}
+		{{> stat}}
+		{{/each}}
+	</div>
+</body>
+
+<template name="stat">
+	<span  class="stat"> {{label}} : {{amount}}
+	</span><br/>
+</template>

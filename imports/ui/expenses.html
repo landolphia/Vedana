@@ -1,0 +1,22 @@
+<body>
+	<div class="expenses">
+		<h4> Expenses </h4>
+		{{#each expenses}}
+		{{> expense}}
+		{{/each}}
+		<span>Total: {{expenses_total}}</span>
+		<div>
+			<form id="newExpense">
+				<input type="numeric" name="amount" placeholder="Amount">
+				<input type="text" name="label" placeholder="Label">
+				<button> add </button>
+			</form>
+		</div>
+	</div>
+</body>
+
+<template name="expense">
+	<span  class="expense"> ${{amount}} : {{label}}
+		<button class="deleteExpense"> - </button>
+	</span>
+</template>

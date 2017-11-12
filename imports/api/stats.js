@@ -4,8 +4,8 @@ import { check } from 'meteor/check';
 
 import { getWeekRange } from './dates.js';
 
-import { Expenses } from '../imports/expenses.js';
-import { Jobs } from '../imports/jobs.js';
+import { Expenses } from './expenses.js';
+import { Jobs } from './jobs.js';
 
 export const Stats = new Mongo.Collection('stats');
 

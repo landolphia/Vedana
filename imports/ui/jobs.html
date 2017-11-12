@@ -1,0 +1,24 @@
+<body>
+	<div class="jobs">
+	<h4> Jobs </h4>
+	{{#each jobs}}
+	{{> job}}
+	{{/each}}
+	<span>Total: {{jobs_total}}</span>
+	<div> 
+		<form id="newJob">
+			<input type="numeric" name="amount" placeholder="Wage">
+			<button id="happy"> :) </button>
+			<button id="unhappy"> :( </button>
+		</form>
+	</div>
+</div>
+</body>
+
+<template name="job">
+	<span  class="job"> ${{amount}}
+		{{#if mood}}:){{/if}}
+		{{#unless mood}}:({{/unless}}
+		<button class="deleteJob"> - </button>
+	</span>
+</template>
