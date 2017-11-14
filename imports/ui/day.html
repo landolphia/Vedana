@@ -1,0 +1,34 @@
+<body>
+	<div 
+		style="	width            : 200px;
+			height           : 500px;
+			border           : solid 2px #99CC99;
+			border-radius    : 1em 1em 0.3em 0.3em;
+			background-color : #BBFFBB;"
+		class="day">
+		<h4> {{dayName}} </h4>
+		<span> {{dayTotal}} </span>
+		<ul>
+			{{#each todaysJobs}}
+			{{> job}}
+			{{/each}}
+		</ul>
+		{{> newJobForm}}
+	</div>
+</body>
+
+<template name="newJobForm">
+	<form id="newJob">
+		<input type="numeric" name="amount" placeholder="Wage">
+		<button> + </button>
+	</form>
+</template>
+
+<template name="job">
+	<li>
+		${{amount}} 
+		<button 
+	  		class="deleteJob"
+	  		style=" width: 10px; height: 10px; margin: 0; padding: 0;">x</button>
+	</li>
+</template>
