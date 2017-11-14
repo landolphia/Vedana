@@ -13,7 +13,6 @@ Template.body.onCreated( function bodyOnCreated() {
 
 Template.body.helpers({
 	jobs() {
-		console.log("YOU)");
 		return Jobs.find({});
 	},
 	jobs_total() {
